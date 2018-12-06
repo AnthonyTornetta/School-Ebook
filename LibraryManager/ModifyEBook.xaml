@@ -1,0 +1,107 @@
+﻿<Window x:Class="LibraryManager.ModifyEBook"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManager"
+        mc:Ignorable="d"
+        Title="Library Manager: Modify E-Book"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        FontFamily="Century Gothic"
+        Height="310" Width="390">
+
+    <Window.Resources>
+        <Style x:Key="btn-title" TargetType="Button">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Width" Value="48" />
+            <Setter Property="Height" Value="36" />
+            <Setter Property="BorderThickness" Value="0" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btn-title-close" TargetType="Button" BasedOn="{StaticResource btn-title}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btn-slick" TargetType="Button">
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontSize" Value="32" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="32" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#333" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Title Bar -->
+            <RowDefinition Height="*" />
+            <!-- Rest of the window -->
+        </Grid.RowDefinitions>
+
+        <!-- Title Bar -->
+        <Grid Grid.Row="0" MouseDown="titleBar_MouseDown" x:Name="titleBar" VerticalAlignment="Top" Background="#FF004272">
+            <TextBlock x:Name="txtTitle" Margin="6 0 0 0" Foreground="White" FontSize="20" FontWeight="Thin" 
+                            VerticalAlignment="Center"
+                            Text="Modify E-Book"/>
+
+            <Grid VerticalAlignment="Top" HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button IsTabStop="False" x:Name="btnMinimize" Click="btnMinimize_Click"  Grid.Column="0" Content="_" Style="{StaticResource btn-title}" />
+                <Button IsTabStop="False" x:Name="btnClose" Click="btnClose_Click" Grid.Column="2" Content="X" Style="{StaticResource btn-title-close}" />
+            </Grid>
+        </Grid>
+
+        <!-- Main Window -->
+        <Border Padding="0 6 0 0" Grid.Row="1" BorderThickness="3" BorderBrush="#FF004272">
+            <StackPanel>
+                <!-- Name -->
+                <TextBlock Margin="5 0 0 0" FontSize="16" Text="E-Book Name" />
+                <TextBox x:Name="iptName" FontSize="16" Padding="2 6" Margin="5 10" TextChanged="iptName_TextChanged" />
+
+                <!-- Redemption Code -->
+                <TextBlock Margin="5 0 0 0" FontSize="16" Text="Redemption Code" />
+                <TextBox x:Name="iptRedemptionCode" FontSize="16" Padding="6" Margin="5 10" TextChanged="iptRedemptionCode_TextChanged" />
+
+                <!-- Redeem Date -->
+                <TextBlock Margin="5 0 0 0" FontSize="16" Text="E-Book Renewal Date" />
+                <DatePicker x:Name="dteEBookRenewal" FontSize="16" Padding="6" Margin="5 10" CalendarOpened="dteEBookRenewal_CalendarOpened" />
+
+                <!-- Done/Cancel -->
+                <Grid HorizontalAlignment="Right">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button IsDefault="True" Style="{StaticResource btn-slick}" Grid.Column="1" FontSize="16" Width="80" Margin="10 0" x:Name="btnDone" Click="btnDone_Click" Content="Done" />
+                    <Button Style="{StaticResource btn-slick}" Grid.Column="0" FontSize="16" Width="80" Margin="10 0" x:Name="btnCancel" Click="btnClose_Click" Content="Cancel" />
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+
